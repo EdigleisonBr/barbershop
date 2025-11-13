@@ -69,14 +69,15 @@
                     </form>
                 </div>
             @elseif($appointment->status === 'agendado')
-                <div class="flex flex-col w-full gap-2 relative p-2 rounded-lg bg-blue-200">
+                <div class="flex flex-col w-full gap-2 relative p-2 mb-2 rounded-lg bg-blue-200">
                     <!-- badge de status -->
                     <span class="absolute top-1 right-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full shadow">
                         {{ ucfirst($appointment->status) }}
                     </span>
 
                     <!-- Nome do cliente -->
-                    <div>
+                    <div class="flex items-center gap-4">
+                        <span class="w-16 font-semibold text-gray-700">{{ $time }}</span>
                         <span class="font-semibold text-sm text-gray-800">Cliente:</span>
                         <span class="text-sm">{{ $appointment->client_name }}</span>
                     </div>
