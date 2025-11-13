@@ -7,5 +7,4 @@ Route::get('/', [AppointmentController::class, 'index'])->name('appointments.ind
 Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
 Route::post('/appointments/{appointment}/finalize', [AppointmentController::class, 'finalize'])->name('appointments.finalize');
 Route::post('/appointments/{appointment}/cancel', [AppointmentController::class, 'cancel'])->name('appointments.cancel');
-Route::put('/appointments/{appointment}/update-price', [AppointmentController::class, 'updatePrice'])
-    ->name('appointments.updatePrice');
+Route::post('/appointments/{appointment}/update-price', [AppointmentController::class, 'updatePrice'])->name('appointments.updatePrice');
