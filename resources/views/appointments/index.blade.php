@@ -37,13 +37,13 @@
 
         <div class="flex justify-between items-center mt-2 mb-4 text-sm">
             <div class="flex-1 text-center bg-blue-100 text-blue-800 font-semibold py-2 mx-1 rounded-lg shadow-sm">
-                💙 Agendados: {{ $agendados }}
+                ✂️ Agendados: {{ $agendados }}
             </div>
             <div class="flex-1 text-center bg-green-100 text-green-800 font-semibold py-2 mx-1 rounded-lg shadow-sm">
-                💚 Finalizados: {{ $finalizados }}
+                ✂️ Finalizados: {{ $finalizados }}
             </div>
             <div class="flex-1 text-center bg-yellow-100 text-yellow-800 font-semibold py-2 mx-1 rounded-lg shadow-sm">
-                💵 Total: R$ {{ number_format($total, 2, ',', '.') }}
+                💵 R$ {{ number_format($total, 2, ',', '.') }}
             </div>
         </div>
 
