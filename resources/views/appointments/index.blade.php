@@ -118,7 +118,7 @@
                         </span>
                     </div>
                     <span class="bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-                        ✅ {{ ucfirst($appointment->status) }}
+                        ✅ Ok
                     </span>
                 </div>
             @endif
