@@ -113,22 +113,79 @@
                 </div>
             @elseif($appointment->status === 'finalizado')
                 <div class="flex items-center justify-between p-3 mb-2 rounded-lg bg-green-100 shadow-sm">
-                    <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-2">
                         <span class="w-16 font-semibold text-gray-700">{{ $time }}</span>
-                        <span class="font-semibold text-gray-800 text-sm">
-                            {{ $appointment->client_name }}
-                        </span>
-                        <span class="text-base font-bold text-green-700">
-                            R$ {{ number_format($appointment->price, 2, ',', '.') }}
-                        </span>
+                        <span class="font-semibold text-gray-800 text-sm">{{ $appointment->client_name }}</span>
+
+                        <div class="flex items-center space-x-1">
+                            <span class="text-base font-bold text-green-700">
+                                R$ {{ number_format($appointment->price, 2, ',', '.') }}
+                            </span>
+                            <button 
+                                type="button"
+                                onclick="openModal('{{ $appointment->id }}')"
+                                class="text-blue-600 hover:text-blue-800"
+                                title="Editar valor"
+                            >
+                                ✏️
+                            </button>
+                        </div>
                     </div>
+
                     <span class="bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
                         ✅ Ok
                     </span>
                 </div>
+
+                <!-- Modal -->
+                <div id="modal-{{ $appointment->id }}" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div class="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-sm mx-auto">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4">Editar valor</h2>
+                        <form action="{{ route('appointments.updatePrice', $appointment) }}" method="POST" class="space-y-4">
+                            @csrf
+                            @method('PUT')
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Novo valor (R$)</label>
+                                <input 
+                                    type="number" 
+                                    step="0.01" 
+                                    name="price" 
+                                    value="{{ $appointment->price }}" 
+                                    inputmode="decimal"
+                                    required
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                >
+                            </div>
+                            <div class="flex justify-end space-x-2">
+                                <button 
+                                    type="button"
+                                    onclick="closeModal('{{ $appointment->id }}')"
+                                    class="px-4 py-2 text-sm rounded-md bg-gray-200 hover:bg-gray-300"
+                                >
+                                    Cancelar
+                                </button>
+                                <button 
+                                    type="submit"
+                                    class="px-4 py-2 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700"
+                                >
+                                    Salvar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             @endif
         @endforeach
     </div>
+
+    <script>
+            function openModal(id) {
+                document.getElementById('modal-' + id).classList.remove('hidden');
+            }
+            function closeModal(id) {
+                document.getElementById('modal-' + id).classList.add('hidden');
+            }
+        </script>
 
 </body>
 </html>

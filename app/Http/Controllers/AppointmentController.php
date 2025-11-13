@@ -81,4 +81,15 @@ class AppointmentController extends Controller
 
         return redirect()->back();
     }
+
+    public function updatePrice(Request $request, Appointment $appointment)
+    {
+        $request->validate([
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        $appointment->update(['price' => $request->price]);
+
+        return redirect()->back()->with('success', 'Valor atualizado com sucesso!');
+    }
 }
