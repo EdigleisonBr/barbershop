@@ -89,9 +89,14 @@
                             <label class="text-sm text-gray-700">Valor</label>
                             <div class="flex items-center bg-white border border-gray-300 rounded px-2">
                                 <span class="text-gray-500 text-sm">R$</span>
-                                <input type="text" name="price"
-                                    value="{{ number_format(25, 2, ',', '.') }}"
-                                    class="w-16 text-sm border-none focus:ring-0 text-center bg-transparent" />
+                                <input 
+                                    type="number" 
+                                    name="price"
+                                    step="0.01"
+                                    value="25.00"
+                                    class="w-20 text-sm border-none focus:ring-0 text-center bg-transparent"
+                                    inputmode="decimal"
+                                />
                             </div>
                             <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded text-sm shadow hover:bg-green-600 transition">
                                 Finalizar
